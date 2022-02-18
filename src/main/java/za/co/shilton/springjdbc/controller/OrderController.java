@@ -20,6 +20,7 @@ import za.co.shilton.springjdbc.annotations.Performance;
 import za.co.shilton.springjdbc.dto.OrderDto;
 import za.co.shilton.springjdbc.dto.OrderRequestDto;
 import za.co.shilton.springjdbc.service.OrderService;
+import za.co.shilton.springjdbc.service.TeamsNotificationService;
 
 
 @Slf4j
@@ -29,6 +30,9 @@ public class OrderController {
 
   @Autowired
   private OrderService orderService;
+
+  @Autowired
+  private TeamsNotificationService teamsNotificationService;
 
   @PostMapping
   public UUID createOrder(@RequestBody OrderRequestDto orderRequest) {
@@ -84,9 +88,11 @@ public class OrderController {
     return summary + "<br>Detailed Errors:<br>\n" + detailedErrors.toString();
   }
 
-  @Scheduled(cron = "0 0/30 6-21 * * *")
+  @Scheduled(cron = "0 0/55 6-21 * * *")
   public void scheduleStatus() {
-    System.out.println(getStatus(null, null));
+    var status = getStatus(null, null);
+    System.out.println(status);
+    teamsNotificationService.generateAlert("Summary", status, "Shil-localPC");
   }
 
 

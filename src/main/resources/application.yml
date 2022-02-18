@@ -10,3 +10,5 @@ spring:
   h2:
     console:
       enabled: true
+comms:
+  teams: https://standardbank.webhook.office.com/webhookb2/4b670561-d735-4ffc-8fde-014475baa96a@7369e6ec-faa6-42fa-bc0e-4f332da5b1db/IncomingWebhook/dcfe4e754fd9439180ed90ca669eae0e/5a5a1dfc-acf9-41d1-a358-e64f8b771d13
