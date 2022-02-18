@@ -1,5 +1,9 @@
 package za.co.shilton.springjdbc.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,21 @@ public class OrderService {
   public OrderDto getOrder(UUID uuid) {
     return jdbcRepo.getOrder(uuid);
   }
+
+  public int getSuccess(LocalDateTime startDate, LocalDateTime endate) {
+
+    return jdbcRepo.getSuccess(Timestamp.valueOf(startDate), Timestamp.valueOf(endate));
+  }
+
+  public int getErrors(LocalDateTime startDate, LocalDateTime endate) {
+    return jdbcRepo.getErrors(Timestamp.valueOf(startDate), Timestamp.valueOf(endate));
+  }
+
+  public List<String> getDetailedErrors(LocalDateTime startDate, LocalDateTime endate) {
+    return jdbcRepo.getDetailedErrors(Timestamp.valueOf(startDate), Timestamp.valueOf(endate));
+  }
+
+
 
 
 }
